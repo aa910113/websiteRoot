@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crispy Ching</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          container: {
+            center: true,
+            padding: '26%',
+          },
+          extend: {
+            colors: {
+              primary: '#fab62d',
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body
+    id="app"
+    class="bg-[url('/assets/img/background_lg.png')] bg-cover bg-no-repeat bg-center bg-fixed"
+  >
+    <main
+      v-show="!menuFlag && !specificationFlag"
+      class="w-full md:w-[480px] mx-auto bg-[url('/assets/img/background.png')] bg-repeat bg-[length:80px_80px] flex flex-col gap-12"
+    >
+      <!-- 作品列表 -->
+      <section class="pt-10 relative flex justify-center">
+        <img
+          class="absolute w-[210px]"
+          src="/assets/img/list.png"
+          alt="作品列表"
+        />
+        <div class="mt-28">
+          <div v-for="(posts, i) in postList" :key="i" class="relative">
+            <img src="/assets/img/vote_bg2.png" alt="作品專區" />
+            <ul
+              class="absolute flex md:px-8 md:gap-12 top-5 video_wrap video_map_wrap"
+            >
+              <li v-for="post in posts" :key="post.id">
+                <div class="md:w-[184px] md:h-[322px] mb-8 video_item">
+                  <div v-if="post.platform === 'instagram'" class="relative">
+                    <div
+                      class="absolute overflow-hidden md:w-[184px] md:h-[322px] flex justify-center top-0 video_ig"
+                    >
+                      <div class="w-full h-full md:-ml-20 mt-[-54px]">
+                        <iframe
+                          width="270"
+                          height="610"
+                          src="https://www.instagram.com/reel/C4KtXsnyn83/embed"
+                          frameborder="0"
+                        ></iframe>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="w-full h-full"
+                    v-else-if="post.platform === 'facebook'"
+                  >
+                    <iframe
+                      src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F308745742245646&width=184&show_text=false&appId=677088294591742&height=322"
+                      width="184"
+                      height="322"
+                      style="border: none; overflow: hidden"
+                      scrolling="no"
+                      frameborder="0"
+                      allowfullscreen="true"
+                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    ></iframe>
+                  </div>
+                  <div class="w-full h-full" v-else>
+                    <iframe
+                      width="184"
+                      height="322"
+                      src="https://www.youtube.com/embed/QPOLrbKI5oQ"
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media;gyroscope; picture-in-picture;web-share"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </div>
+                <div class="video_info">
+                  <div class="md:w-[184px] md:h-[90px] bg-red-200 video_list">
+                    <p class="text-balance">
+                      <span class="w-[86px] font-bold inline-block"
+                        >投稿人暱稱:</span
+                      >
+                      <span class="text-[#381b14]"
+                        >{{post.submission_name}}</span
+                      >
+                    </p>
+                    <div class="flex">
+                      <span class="w-[70px] font-bold inline-block"
+                        >作品名稱:</span
+                      >
+                      <span class="text-[#381b14]">{{post.title}}</span>
+                    </div>
+                    <div class="flex">
+                      <span class="w-[70px] font-bold inline-block"
+                        >累積票數:</span
+                      >
+                      <span class="text-[#381b14]">{{post.votes}}</span>
+                    </div>
+                  </div>
+                  <img
+                    class="max-w-[160px] w-[25vw] mt-3 mx-auto"
+                    src="/assets/img/vote_button.png"
+                    alt="投給他一票"
+                  />
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <img
+          src="/assets/img/footer.png"
+          alt="客服信箱:CrispyChing2024@supermedia.cool"
+        />
+      </footer>
+    </main>
+    <!-- 選單 -->
+    <section v-show="menuFlag" class="w-full md:w-[480px] mx-auto">
+      <div
+        class="relative bg-[url('/assets/img/menu_background2.jpg')] bg-[length:480px_841.3px] bg-repeat-y h-screen bg-[center_top_193.5px]"
+      >
+        <img src="/assets/img/menu_background.png" alt="選單背景" />
+        <div class="flex justify-center items-center">
+          <div
+            class="absolute top-[2%] right-[3%] bg-red-200 w-[9%] h-[4%] sm:h-[6%] md:h-[4%] rounded-full cursor-pointer"
+            @click="menuFlag = !menuFlag"
+          ></div>
+          <!-- 修了這邊 start -->
+          <div
+            class="absolute top-[45vw] md:top-56 md:max-w-[300px] max-w-[480px] w-[62vw]"
+          >
+            <img src="/assets/img/menu.png" alt="" />
+
+            <a
+              v-for="i in Array.from(Array(8).keys())"
+              :href="`#section${i+1}`"
+              :class="`sectionBlock section${i+1}`"
+              @click="menuFlag = !menuFlag"
+            >
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./assets/js/index.js"></script>
+  </body>
+</html>

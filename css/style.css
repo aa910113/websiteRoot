@@ -1,0 +1,232 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.sectionBlock {
+  position: absolute;
+  display: inline-block;
+  max-width: 280px;
+  max-height: 35px;
+  width: 30vw;
+  height: 20vw;
+}
+
+.sectionBlock.section1 {
+  top: 0%;
+}
+
+.sectionBlock.section2 {
+  top: 12.5%;
+}
+
+.sectionBlock.section3 {
+  top: 26.5%;
+}
+
+.sectionBlock.section4 {
+  top: 39.5%;
+}
+
+.sectionBlock.section5 {
+  top: 53%;
+}
+
+.sectionBlock.section6 {
+  top: 66%;
+}
+
+.sectionBlock.section7 {
+  top: 80%;
+}
+
+.sectionBlock.section8 {
+  top: 93%;
+}
+
+#section4 ul {
+  width: 100%;
+  top: 30%;
+}
+
+#section4 ul li {
+  border-radius: 10px;
+  margin-left: 7.5%;
+}
+
+#section4 ul li:first-child {
+  margin-right: 7%;
+}
+
+#section4 ul iframe {
+  width: 123%;
+  height: 140vw;
+}
+
+.video_list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#Page {
+  position: relative;
+  margin-top: 60px;
+}
+
+#Page img {
+  height: 100%;
+}
+
+#Page iframe {
+  width: 100%;
+  height: 100%;
+}
+
+#Page .video_page {
+  position: absolute;
+  max-width: 270px;
+  top: 4.5%;
+  left: 21.3%;
+  width: 50vw;
+  max-height: 480px;
+  height: 62vw;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+#Page .video_page .ig_item iframe {
+  width: 143%;
+  height: 161%;
+}
+
+#Page .page_info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  bottom: 1.5%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+@media (max-width: 767px) {
+  #Page .video_page {
+    max-width: 428px;
+    top: 4.5%;
+    left: 21.5%;
+    width: 56vw;
+    max-height: 762px;
+    height: 100vw;
+  }
+  #Page .ig_item {
+    margin-left: -12vw;
+  }
+  #Page .video_list {
+    max-height: 145px;
+    height: 19vw;
+    max-width: 420px;
+    width: 56vw;
+  }
+  #section4 ul li {
+    max-width: 290px;
+    max-height: 530px;
+    width: 38vw;
+    height: 69vw;
+    margin-left: 6%;
+  }
+  #section4 ul li:first-child {
+    margin-right: 6%;
+  }
+  .sectionBlock {
+    max-width: 360px;
+    max-height: 55px;
+    width: 53vw;
+    height: 7vw;
+  }
+  .video_wrap {
+    max-height: 780px;
+    height: 101vw;
+    left: 7vw;
+    top: 24vw !important;
+  }
+  .video_wrap li:nth-child(odd) {
+    margin-right: 11vw;
+  }
+  .video_wrap.video_map_wrap {
+    top: 4.5vw !important;
+  }
+  .video_ig {
+    height: 80vw;
+  }
+  .video_ig div {
+    margin-left: -8.5vw;
+    width: 49vw;
+    overflow: hidden;
+    overflow-y: hidden;
+    height: 130vw;
+  }
+  .video_ig div iframe {
+    width: 110%;
+    height: 100%;
+    overflow-y: hidden;
+  }
+  .video_item {
+    max-width: 284px;
+    width: 37.5vw;
+    max-height: 508px;
+    height: 66vw;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .video_item iframe {
+    width: 100%;
+    height: 100%;
+  }
+  .video_info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    max-width: 284px;
+    width: 37.5vw;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    max-height: 200px;
+    height: 27vw;
+  }
+  .video_list {
+    max-height: 145px;
+    height: 19vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .video_info,
+  .video_list {
+    font-size: 12px;
+  }
+}
+/*# sourceMappingURL=style.css.map */
