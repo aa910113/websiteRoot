@@ -20,7 +20,7 @@
         },
       };
     </script>
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body
     id="app"
@@ -36,9 +36,9 @@
             class="absolute top-2 right-4 bg-inherit w-[10%] h-12 cursor-pointer"
             @click="menuFlag = !menuFlag"
           ></div>
-          <img src="/assets/img/header.png" alt="經脆脆美味響動" />
+          <img src="assets/img/header.png" alt="經脆脆美味響動" />
           <a class="absolute bottom-[5vw] w-[50vw] md:bottom-6 md:w-[240px]" href="#section3">
-            <img src="/assets/img/contribute.png" alt="立即投稿" />
+            <img src="assets/img/contribute.png" alt="立即投稿" />
           </a>
         </div>
       </section>
@@ -46,12 +46,12 @@
       <section id="section1" class="pt-32 px-6 relative flex justify-center">
         <img
           class="absolute top-0 md:top-6 w-[40vw] md:w-[210px]"
-          src="/assets/img/activity＿title.png"
+          src="assets/img/activity＿title.png"
           alt="強力募集"
         />
         <div>
-          <img class="mb-6" src="/assets/img/activity.png" alt="活動方式" />
-          <img id="section2" src="/assets/img/prize.png" alt="活動獎項" />
+          <img class="mb-6" src="assets/img/activity.png" alt="活動方式" />
+          <img id="section2" src="assets/img/prize.png" alt="活動獎項" />
         </div>
       </section>
       <!-- 報名專區 -->
@@ -62,7 +62,7 @@
         >
           <img
             v-show="step === 1"
-            src="/assets/img/signedUp_background.png"
+            src="assets/img/signedUp_background.png"
             alt="投稿資料"
           />
           <div
@@ -70,7 +70,7 @@
             class="absolute top-[51vw] w-[69vw] md:top-[240px] md:px-16 md:max-w-[470px]"
           >
             <div class="relative">
-              <img src="/assets/img/signedUp_info.png" alt="填寫資料" />
+              <img src="assets/img/signedUp_info.png" alt="填寫資料" />
               <div
                 class="absolute top-0 right-0 w-[41vw] max-w-[40vw] md:max-w-[198px] flex flex-col gap-[6vw] md:gap-7"
               >
@@ -101,13 +101,13 @@
             <img
               @click="isVotePeriod()"
               class="mt-4 px-16 cursor-pointer"
-              src="/assets/img/signedUp_next1.png"
+              src="assets/img/signedUp_next1.png"
               alt="下一步"
             />
           </div>
           <img
             v-show="step === 2"
-            src="/assets/img/signedUp_background2.png"
+            src="assets/img/signedUp_background2.png"
             alt="收件資料"
           />
           <div
@@ -115,7 +115,7 @@
             class="absolute top-[51vw] w-[69vw] md:top-[240px] md:px-16 md:max-w-[470px]"
           >
             <div class="relative">
-              <img src="/assets/img/signedUp_info2.png" alt="填寫資料" />
+              <img src="assets/img/signedUp_info2.png" alt="填寫資料" />
               <div class="absolute top-0 right-0 w-[42vw] md:w-[210px]">
                 <input
                   type="text"
@@ -161,13 +161,13 @@
               <img
                 @click="step = 1"
                 class="w-[30vw] md:w-36 cursor-pointer"
-                src="/assets/img/previous.png"
+                src="assets/img/previous.png"
                 alt="上一步"
               />
               <img
                 @click="checkReceiptInfo()"
                 class="w-[30vw] md:w-36 cursor-pointer"
-                src="/assets/img/nextStep.png"
+                src="assets/img/nextStep.png"
                 alt="下一步"
               />
             </div>
@@ -178,11 +178,11 @@
       <section id="section4" class="pt-36 relative flex justify-center">
         <img
           class="absolute top-0 md:top-6 w-[40vw] md:w-[210px]"
-          src="/assets/img/kol_title.png"
+          src="assets/img/kol_title.png"
           alt="KOL 來示範"
         />
         <div class="relative">
-          <img src="/assets/img/kol.png" alt="示範影片" />
+          <img src="assets/img/kol.png" alt="示範影片" />
           <ul class="absolute flex">
             <li class="overflow-hidden md:max-w-[170px] md:max-h-[330px]">
               <div class="mt-[-54px] md:ml-[-46px] sm:ml-[-65px] ml-[-53px]">
@@ -211,16 +211,16 @@
       <section class="pt-32 relative flex justify-center">
         <img
           class="absolute top-0 md:top-6 w-[40vw] md:w-[210px]"
-          src="/assets/img/invite_title.png"
+          src="assets/img/invite_title.png"
           alt="呼朋引伴"
         />
-        <img src="/assets/img/vote_plan.png" alt="投票方式" />
+        <img src="assets/img/vote_plan.png" alt="投票方式" />
       </section>
       <!-- 投票專區 -->
       <section class="pt-2 relative flex justify-center">
         <img
           class="absolute top-0 w-[40vw] md:w-[210px]"
-          src="/assets/img/voye_title.png"
+          src="assets/img/voye_title.png"
           alt="投票專區"
         />
         <div>
@@ -326,7 +326,7 @@
                   </div>
                   <img
                     class="max-w-[160px] w-[25vw] mt-3 mx-auto"
-                    src="/assets/img/vote_button.png"
+                    src="assets/img/vote_button.png"
                     alt="投給他一票"
                   />
                 </div>
@@ -336,7 +336,7 @@
           <div class="">
             <img
               class="mx-auto mt-10"
-              src="/assets/img/more.png"
+              src="assets/img/more.png"
               alt="看更多作品"
               width="200px"
             />
@@ -347,26 +347,26 @@
       <section id="section5" class="pt-32 relative flex justify-center">
         <img
           class="absolute top-0 md:top-6 w-[40vw] md:w-[262px] ml-12"
-          src="/assets/img/newItem_title.png"
+          src="assets/img/newItem_title.png"
           alt="經脆脆全系列"
         />
-        <img src="/assets/img/newItem.png" alt="經脆脆全系列" />
+        <img src="assets/img/newItem.png" alt="經脆脆全系列" />
       </section>
       <!-- 永恆選務 -->
       <section id="section6" class="relative flex justify-center">
         <img
           class="absolute top-0 md:top-2 w-[40vw] md:w-[214px]"
-          src="/assets/img/eternal_title.png"
+          src="assets/img/eternal_title.png"
           alt="獨家優惠"
         />
-        <img src="/assets/img/eternal.png" alt="點擊複製折扣碼 享95折優惠" />
+        <img src="assets/img/eternal.png" alt="點擊複製折扣碼 享95折優惠" />
         <a
           class="absolute bottom-5"
           href="https://store.eternal-bc.com/collections/%E7%B6%93%E8%84%86%E8%84%86%E9%A4%A8"
         >
           <img
             class="w-[200px]"
-            src="/assets/img/eternal_button.png"
+            src="assets/img/eternal_button.png"
             alt="前往永恆選物官網"
           />
         </a>
@@ -375,24 +375,24 @@
       <section id="section7" class="px-20">
         <img
           class="w-[300px] py-4 pl-4"
-          src="/assets/img/coupon_title.png"
+          src="assets/img/coupon_title.png"
           alt="獨家優惠"
         />
         <img
           @click="copyCouponCode()"
           class="cursor-pointer"
-          src="/assets/img/coupon.png"
+          src="assets/img/coupon.png"
           alt="點擊複製折扣碼 想95折優惠"
         />
         <div class="px-6 py-10">
           <a href="https://store.eternal-bc.com/">
-            <img src="/assets/img/coupon_button.png" alt="前往永恆選物官網" />
+            <img src="assets/img/coupon_button.png" alt="前往永恆選物官網" />
           </a>
         </div>
       </section>
       <footer>
         <img
-          src="/assets/img/footer.png"
+          src="assets/img/footer.png"
           alt="客服信箱:CrispyChing2024@supermedia.cool"
         />
       </footer>
@@ -402,7 +402,7 @@
       <div
         class="relative bg-[url('/assets/img/menu_background2.jpg')] bg-[length:480px_841.3px] bg-repeat-y h-screen bg-[center_top_193.5px]"
       >
-        <img src="/assets/img/menu_background.png" alt="選單背景" />
+        <img src="assets/img/menu_background.png" alt="選單背景" />
         <div class="flex justify-center items-center">
           <div
             class="absolute top-[2%] right-[3%] w-[9%] h-[4%] sm:h-[6%] md:h-[4%] rounded-full cursor-pointer"
@@ -411,7 +411,7 @@
           <div
             class="absolute top-[45vw] md:top-56 md:max-w-[300px] max-w-[480px] w-[62vw]"
           >
-            <img src="/assets/img/menu.png" alt="" />
+            <img src="assets/img/menu.png" alt="" />
 
             <a
               v-for="i in Array.from(Array(8).keys())"
@@ -431,13 +431,13 @@
       >
         <img
           class="absolute top-8 w-[210px]"
-          src="/assets/img/specification_title.png"
+          src="assets/img/specification_title.png"
           alt="活動規範"
         />
         <img
           @click="specificationFlag = !specificationFlag"
           class="absolute top-7 right-10 w-[40px] cursor-pointer"
-          src="/assets/img/cancel.png"
+          src="assets/img/cancel.png"
           alt="關閉"
         />
         <div>
@@ -451,7 +451,7 @@
               class="cursor-pointer"
               @click="specificationFlag = !specificationFlag"
             >
-              <img src="/assets/img/back.png" alt="回到首頁" />
+              <img src="assets/img/back.png" alt="回到首頁" />
             </div>
           </div>
         </div>
@@ -484,7 +484,7 @@
             <div class="relative">
               <img
                 width="398"
-                src="/assets/img/copiedSuccessfully.png"
+                src="assets/img/copiedSuccessfully.png"
                 alt="已複製折扣碼"
               />
               <div
@@ -528,7 +528,7 @@
             <div class="relative">
               <img
                 width="398"
-                src="/assets/img/formError.png"
+                src="assets/img/formError.png"
                 alt="投稿尚未完成，請完整填寫資料！"
               />
               <div
@@ -567,7 +567,7 @@
             <div class="relative">
               <img
                 width="398"
-                src="/assets/img/videoUrlError.png"
+                src="assets/img/videoUrlError.png"
                 alt="此影片連結格式不符！"
               />
               <div
@@ -606,7 +606,7 @@
             <div class="relative">
               <img
                 width="398"
-                src="/assets/img/registrationSuccess.png"
+                src="assets/img/registrationSuccess.png"
                 alt="恭喜投稿成功！"
               />
               <div
@@ -648,7 +648,7 @@
             <div class="relative">
               <img
                 width="398"
-                src="/assets/img/isVoteTime.png"
+                src="assets/img/isVoteTime.png"
                 alt="投稿尚未完成，請完整填寫資料！"
               />
               <div
