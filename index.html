@@ -226,7 +226,7 @@
         <div>
           <div v-for="(posts, i) in postList" :key="i" class="relative">
             <img
-              :src="`/assets/img/vote_${i==0?'bg':'bg2'}.png`"
+              :src="`assets/img/vote_${i==0?'bg':'bg2'}.png`"
               alt="作品專區"
             />
             <ul
@@ -661,6 +661,6 @@
       </div>
     </section>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./assets/js/index.js"></script>
+    <script src="assets/js/index.js"></script>
   </body>
 </html>
