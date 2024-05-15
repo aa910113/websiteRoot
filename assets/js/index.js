@@ -1,7 +1,18 @@
 const { createApp, ref, onMounted } = Vue;
-
 createApp({
   setup() {
+    let token = '';
+    const loginSuccess = ref(false);
+    onMounted(() => {
+      login.value = false;
+      const queryString = window.location.search;
+      if (queryString) {
+        token = queryString.split('token=')[1];
+        document.cookie = `ching_token=${token}`;
+        loginSuccess.value = true;
+      }
+    });
+
     const copiedSuccessfully = ref(false);
     const menuFlag = ref(false);
 
@@ -49,7 +60,7 @@ createApp({
     const domain = 'https://test-event.ttshow.tw';
 
     onMounted(() => {
-      getPost();
+      getPosts();
     });
 
     function getPlatform(videoURL) {
@@ -76,7 +87,7 @@ createApp({
     }
 
     const postList = ref([]);
-    async function getPost() {
+    async function getPosts() {
       const response = await fetch(`${domain}/api/crispyching2024/post`);
       const data = await response.json();
 
@@ -96,7 +107,6 @@ createApp({
         acc[chunkIndex].push(curr);
         return acc;
       }, []);
-      console.log('postList.value', postList.value);
     }
 
     const step = ref(1);
@@ -195,15 +205,97 @@ createApp({
 
     const isVoteTime = ref(false);
     const now = new Date();
-    const voteStart = new Date('2022-06-14T00:00:00+08:00');
-    const voteEnd = new Date('2022-07-13T23:59:59+08:00');
-    function isVotePeriod() {
+    let voteStart = null;
+    let voteEnd = null;
+
+    onMounted(() => {
+      getVotePeriod();
+    });
+
+    async function getVotePeriod() {
+      const response = await fetch(`${domain}/api/crispyching2024/info`);
+      const data = await response.json();
+      voteStart = new Date(data.data.start_time);
+      voteEnd = new Date(data.data.end_time);
+    }
+
+    function isVotePeriod(id) {
       if (now < voteStart || now > voteEnd) {
         isVoteTime.value = true;
       } else {
         isVoteTime.value = false;
-        checkSignedUpInfo();
+        if (id) {
+          isLogin(id);
+        } else {
+          checkSignedUpInfo();
+        }
       }
+    }
+    const login = ref(true);
+    function isLogin(id) {
+      const ching_token = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('ching_token'));
+      if (ching_token) {
+        token = ching_token.split('=')[1];
+        vote(token, id);
+      } else {
+        login.value = true;
+      }
+    }
+
+    const voteSuccess = ref(false);
+    const voteFail = ref(false);
+    const voteLimit = ref(false);
+    async function vote(token, id) {
+      const response = await fetch(`${domain}/api/crispyching2024/vote`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ post_id: id }),
+      });
+      const data = await response.json();
+      if (data.status === 200) {
+        voteSuccess.value = true;
+      } else if (data.status === 401) {
+        document.cookie =
+          'ching_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        token = '';
+        login.value = true;
+      } else if (data.status === 403) {
+        if (data.code === 4033) {
+          voteLimit.value = true;
+        } else if (data.code === 4034) {
+          voteFail.value = true;
+        }
+      }
+    }
+
+    onMounted(() => {
+      const queryString = window.location.search;
+      if (queryString) {
+        id = queryString.split('id=')[1];
+        getPost(id);
+      }
+    });
+    const post = ref({
+      id: null,
+      submission_name: '',
+      title: '',
+      video_url: '',
+      votes: null,
+      ranking: null,
+    });
+    async function getPost(id) {
+      const response = await fetch(`${domain}/api/crispyching2024/post/${id}`);
+      const data = await response.json();
+      data.data.platform = getPlatform(data.data.video_url);
+      data.data.transformed_video_url = transformVideoURL(
+        data.data.video_url,
+        data.data.platform,
+      );
+      post.value = data.data;
     }
 
     return {
@@ -226,6 +318,14 @@ createApp({
       isVoteTime,
       isVotePeriod,
       selectMenuItem,
+      loginSuccess,
+      isLogin,
+      login,
+      voteSuccess,
+      voteFail,
+      voteLimit,
+      post,
     };
   },
+  delimiters: ['@{{', '}}'],
 }).mount('#app');

@@ -24,6 +24,7 @@
   </head>
   <body
     id="app"
+    v-cloak
     class="bg-[url('assets/img/background_lg.png')] bg-cover bg-no-repeat bg-center bg-fixed"
   >
     <main
@@ -37,7 +38,10 @@
             @click="menuFlag = !menuFlag"
           ></div>
           <img src="assets/img/header.png" alt="經脆脆美味響動" />
-          <a class="absolute bottom-[5vw] w-[50vw] md:bottom-6 md:w-[240px]" href="#section3">
+          <a
+            class="absolute bottom-[5vw] w-[50vw] md:bottom-6 md:w-[240px]"
+            href="#section3"
+          >
             <img src="assets/img/contribute.png" alt="立即投稿" />
           </a>
         </div>
@@ -90,7 +94,10 @@
                   v-model="form.video_url"
                 />
               </div>
-              <div @click="agree = !agree" class="absolute left-3 bottom-2 md:bottom-1 md:left-2 cursor-pointer">
+              <div
+                @click="agree = !agree"
+                class="absolute left-3 bottom-2 md:bottom-1 md:left-2 cursor-pointer"
+              >
                 <div
                   class="h-[6vw] w-[6vw] md:h-[30px] md:w-[30px] flex justify-center items-center"
                 >
@@ -123,18 +130,29 @@
                   v-model="form.name"
                 />
                 <ul class="flex mb-[3.6vw] md:mb-[16px]">
-                  <li @click="form.gender = 1" class="mr-[13vw] md:mr-[66px] cursor-pointer">
+                  <li
+                    @click="form.gender = 1"
+                    class="mr-[13vw] md:mr-[66px] cursor-pointer"
+                  >
                     <div
                       class="h-[6vw] w-[6vw] md:h-[30px] md:w-[30px] flex justify-center items-center"
                     >
-                      <span v-show="form.gender === 1" class="text-[5vw] md:text-2xl">✔</span>
+                      <span
+                        v-show="form.gender === 1"
+                        class="text-[5vw] md:text-2xl"
+                        >✔</span
+                      >
                     </div>
                   </li>
                   <li @click="form.gender = 0" class="cursor-pointer">
                     <div
                       class="h-[6vw] w-[6vw] md:h-[30px] md:w-[30px] flex justify-center items-center"
                     >
-                      <span v-show="form.gender === 0" class="text-[5vw] md:text-2xl">✔</span>
+                      <span
+                        v-show="form.gender === 0"
+                        class="text-[5vw] md:text-2xl"
+                        >✔</span
+                      >
                     </div>
                   </li>
                 </ul>
@@ -149,7 +167,10 @@
                   v-model="form.address"
                 />
               </div>
-              <div @click="agree2 = !agree2" class="absolute left-3 bottom-2 md:bottom-1 md:left-2 cursor-pointer">
+              <div
+                @click="agree2 = !agree2"
+                class="absolute left-3 bottom-2 md:bottom-1 md:left-2 cursor-pointer"
+              >
                 <div
                   class="h-[6vw] w-[6vw] md:h-[30px] md:w-[30px] flex justify-center items-center"
                 >
@@ -224,7 +245,12 @@
           alt="投票專區"
         />
         <div>
-          <div v-for="(posts, i) in postList" :key="i" class="relative">
+          <div
+            v-for="(posts, i) in postList"
+            :key="i"
+            class="relative"
+            v-show="i < 1"
+          >
             <img
               :src="`assets/img/vote_${i==0?'bg':'bg2'}.png`"
               alt="作品專區"
@@ -248,12 +274,6 @@
                         ></iframe>
                       </div>
                     </div>
-                    <!-- <iframe
-                    width="320"
-                    height="460"
-                    :src="post.transformed_video_url"
-                    frameborder="0"
-                    ></iframe> -->
                   </div>
                   <div
                     class="w-full h-full"
@@ -269,16 +289,6 @@
                       allowfullscreen="true"
                       allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                     ></iframe>
-                    <!-- <iframe
-                      :src="`https://www.facebook.com/plugins/post.php?href=${post.transformed_video_url}&width=500&show_text=false&appId=677088294591742&height=889`"
-                      width="500"
-                      height="889"
-                      style="border: none; overflow: hidden"
-                      scrolling="no"
-                      frameborder="0"
-                      allowfullscreen="true"
-                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                    ></iframe> -->
                   </div>
                   <div class="w-full h-full" v-else>
                     <iframe
@@ -290,42 +300,37 @@
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media;gyroscope; picture-in-picture;web-share"
                       allowfullscreen
                     ></iframe>
-                    <!-- <iframe
-                      width="315"
-                      height="560"
-                      :src="post.transformed_video_url"
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media;gyroscope; picture-in-picture;web-share"
-                      allowfullscreen
-                    ></iframe> -->
                   </div>
                 </div>
                 <div class="video_info">
-                  <div class="md:w-[184px] md:h-[90px] bg-red-200 video_list">
+                  <a
+                    class="md:w-[184px] md:h-[90px] video_list"
+                    :href="`/page.html?id=${post.id}`"
+                  >
                     <p class="text-balance">
                       <span class="w-[86px] font-bold inline-block"
                         >投稿人暱稱:</span
                       >
                       <span class="text-[#381b14]"
-                        >{{post.submission_name}}</span
+                        >@{{post.submission_name}}</span
                       >
                     </p>
                     <div class="flex">
                       <span class="w-[70px] font-bold inline-block"
                         >作品名稱:</span
                       >
-                      <span class="text-[#381b14]">{{post.title}}</span>
+                      <span class="text-[#381b14]">@{{post.title}}</span>
                     </div>
                     <div class="flex">
                       <span class="w-[70px] font-bold inline-block"
                         >累積票數:</span
                       >
-                      <span class="text-[#381b14]">{{post.votes}}</span>
+                      <span class="text-[#381b14]">@{{post.votes}}</span>
                     </div>
-                  </div>
+                  </a>
                   <img
-                    class="max-w-[160px] w-[25vw] mt-3 mx-auto"
+                    @click="isVotePeriod(post.id)"
+                    class="max-w-[160px] w-[25vw] mt-3 mx-auto cursor-pointer"
                     src="assets/img/vote_button.png"
                     alt="投給他一票"
                   />
@@ -333,14 +338,14 @@
               </li>
             </ul>
           </div>
-          <div class="">
+          <a href="./list.html">
             <img
-              class="mx-auto mt-10"
+              class="mx-auto mt-10 cursor-pointer"
               src="assets/img/more.png"
               alt="看更多作品"
               width="200px"
             />
-          </div>
+          </a>
         </div>
       </section>
       <!-- 新品推薦 -->
@@ -613,8 +618,15 @@
                 @click="success = !success"
                 class="absolute top-[15px] right-3 w-10 h-10 cursor-pointer bg-inherit rounded-full"
               ></div>
-              <div @click="success = !success" class="absolute h-12 w-[230px] rounded-full left-14 bottom-[140px] md:left-[49px] md:bottom-[134px]"></div>
-              <a @click="success = !success" href="#section8" class="absolute h-12 w-[230px] rounded-full left-14 bottom-14  md:left-[49px] md:bottom-[53px]">
+              <div
+                @click="success = !success"
+                class="absolute h-12 w-[230px] rounded-full left-14 bottom-[140px] md:left-[49px] md:bottom-[134px]"
+              ></div>
+              <a
+                @click="success = !success"
+                href="#section8"
+                class="absolute h-12 w-[230px] rounded-full left-14 bottom-14 md:left-[49px] md:bottom-[53px]"
+              >
               </a>
             </div>
           </div>
@@ -653,6 +665,210 @@
               />
               <div
                 @click="isVoteTime = !isVoteTime"
+                class="absolute top-[15px] right-3 w-10 h-10 cursor-pointer bg-inherit rounded-full"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 登入成功 -->
+    <section>
+      <div
+        v-if="loginSuccess"
+        class="fixed z-10 inset-0 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <div
+            class="fixed inset-0 bg-black bg-opacity-75 transition-opacity sm:max-w-none"
+            aria-hidden="true"
+          ></div>
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+          <div
+            class="inline-block bg-white rounded-xl overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full mb-[50%]"
+          >
+            <div class="relative">
+              <img
+                width="398"
+                src="assets/img/loginSuccess.png"
+                alt="登入成功！"
+              />
+              <div
+                @click="loginSuccess = !loginSuccess"
+                class="absolute top-[15px] right-3 w-10 h-10 cursor-pointer bg-inherit rounded-full"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 登入 -->
+    <section>
+      <div
+        v-if="login"
+        class="fixed z-10 inset-0 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <div
+            class="fixed inset-0 bg-black bg-opacity-75 transition-opacity sm:max-w-none"
+            aria-hidden="true"
+          ></div>
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+          <div
+            class="inline-block bg-white rounded-xl overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full mb-[50%]"
+          >
+            <div class="relative">
+              <img
+                width="398"
+                src="assets/img/login.png"
+                alt="以Facebook帳號繼續"
+              />
+              <div
+                @click="login = !login"
+                class="absolute top-[15px] right-3 w-10 h-10 cursor-pointer bg-inherit rounded-full"
+              ></div>
+              <a
+                class="absolute bottom-[83px] left-7 h-[54px] sm:h-12 w-[292px] sm:w-[284px] rounded-full"
+                href="https://event.ttshow.tw/sso/facebook"
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 投票成功 -->
+    <section>
+      <div
+        v-if="voteSuccess"
+        class="fixed z-10 inset-0 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <div
+            class="fixed inset-0 bg-black bg-opacity-75 transition-opacity sm:max-w-none"
+            aria-hidden="true"
+          ></div>
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+          <div
+            class="inline-block bg-white rounded-xl overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full mb-[50%]"
+          >
+            <div class="relative">
+              <img
+                width="398"
+                src="assets/img/voteSuccess.png"
+                alt="恭喜投票成功！"
+              />
+              <div
+                @click="voteSuccess = !voteSuccess"
+                class="absolute top-[15px] right-3 w-10 h-10 cursor-pointer bg-inherit rounded-full"
+              ></div>
+              <a
+                @click="voteSuccess = !voteSuccess"
+                class="absolute bottom-[98px] left-7 h-[54px] sm:h-12 w-[292px] sm:w-[280px] rounded-full border"
+                href="/list.html"
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 只可投一次 -->
+    <section>
+      <div
+        v-if="voteFail"
+        class="fixed z-10 inset-0 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <div
+            class="fixed inset-0 bg-black bg-opacity-75 transition-opacity sm:max-w-none"
+            aria-hidden="true"
+          ></div>
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+          <div
+            class="inline-block bg-white rounded-xl overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full mb-[50%]"
+          >
+            <div class="relative">
+              <img
+                width="398"
+                src="assets/img/voteFail.png"
+                alt="每部作品每日僅可投1票已達今日上限！"
+              />
+              <div
+                @click="voteFail = !voteFail"
+                class="absolute top-[15px] right-3 w-10 h-10 cursor-pointer bg-inherit rounded-full"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 已達上限 -->
+    <section>
+      <div
+        v-if="voteLimit"
+        class="fixed z-10 inset-0 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <div
+            class="fixed inset-0 bg-black bg-opacity-75 transition-opacity sm:max-w-none"
+            aria-hidden="true"
+          ></div>
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+          <div
+            class="inline-block bg-white rounded-xl overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full mb-[50%]"
+          >
+            <div class="relative">
+              <img
+                width="398"
+                src="assets/img/voteLimit.png"
+                alt="已達今日投票上限"
+              />
+              <div
+                @click="voteLimit = !voteLimit"
                 class="absolute top-[15px] right-3 w-10 h-10 cursor-pointer bg-inherit rounded-full"
               ></div>
             </div>

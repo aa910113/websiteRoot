@@ -24,6 +24,7 @@
   </head>
   <body
     id="app"
+    v-cloak
     class="bg-[url('assets/img/background_lg.png')] bg-cover bg-no-repeat bg-center bg-fixed"
   >
     <main
@@ -87,30 +88,31 @@
                   </div>
                 </div>
                 <div class="video_info">
-                  <div class="md:w-[184px] md:h-[90px] bg-red-200 video_list">
+                  <a class="md:w-[184px] md:h-[90px] video_list" :href="`/page.html?id=${post.id}`">
                     <p class="text-balance">
                       <span class="w-[86px] font-bold inline-block"
                         >投稿人暱稱:</span
                       >
                       <span class="text-[#381b14]"
-                        >{{post.submission_name}}</span
+                        >@{{post.submission_name}}</span
                       >
                     </p>
                     <div class="flex">
                       <span class="w-[70px] font-bold inline-block"
                         >作品名稱:</span
                       >
-                      <span class="text-[#381b14]">{{post.title}}</span>
+                      <span class="text-[#381b14]">@{{post.title}}</span>
                     </div>
                     <div class="flex">
                       <span class="w-[70px] font-bold inline-block"
                         >累積票數:</span
                       >
-                      <span class="text-[#381b14]">{{post.votes}}</span>
+                      <span class="text-[#381b14]">@{{post.votes}}</span>
                     </div>
-                  </div>
+                  </a>
                   <img
-                    class="max-w-[160px] w-[25vw] mt-3 mx-auto"
+                    @click="isVotePeriod(post.id)"
+                    class="max-w-[160px] w-[25vw] mt-3 mx-auto cursor-pointer"
                     src="assets/img/vote_button.png"
                     alt="投給他一票"
                   />
@@ -138,7 +140,6 @@
             class="absolute top-[2%] right-[3%] bg-red-200 w-[9%] h-[4%] sm:h-[6%] md:h-[4%] rounded-full cursor-pointer"
             @click="menuFlag = !menuFlag"
           ></div>
-          <!-- 修了這邊 start -->
           <div
             class="absolute top-[45vw] md:top-56 md:max-w-[300px] max-w-[480px] w-[62vw]"
           >
@@ -151,6 +152,249 @@
               @click="menuFlag = !menuFlag"
             >
             </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 尚未開放 -->
+    <section>
+      <div
+        v-if="isVoteTime"
+        class="fixed z-10 inset-0 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <div
+            class="fixed inset-0 bg-black bg-opacity-75 transition-opacity sm:max-w-none"
+            aria-hidden="true"
+          ></div>
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+          <div
+            class="inline-block bg-white rounded-xl overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full mb-[50%]"
+          >
+            <div class="relative">
+              <img
+                width="398"
+                src="assets/img/isVoteTime.png"
+                alt="投稿尚未完成，請完整填寫資料！"
+              />
+              <div
+                @click="isVoteTime = !isVoteTime"
+                class="absolute top-[15px] right-3 w-10 h-10 cursor-pointer bg-inherit rounded-full"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 登入成功 -->
+    <section>
+      <div
+        v-if="loginSuccess"
+        class="fixed z-10 inset-0 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <div
+            class="fixed inset-0 bg-black bg-opacity-75 transition-opacity sm:max-w-none"
+            aria-hidden="true"
+          ></div>
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+          <div
+            class="inline-block bg-white rounded-xl overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full mb-[50%]"
+          >
+            <div class="relative">
+              <img
+                width="398"
+                src="assets/img/loginSuccess.png"
+                alt="登入成功！"
+              />
+              <div
+                @click="loginSuccess = !loginSuccess"
+                class="absolute top-[15px] right-3 w-10 h-10 cursor-pointer bg-inherit rounded-full"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 登入 -->
+    <section>
+      <div
+        v-if="login"
+        class="fixed z-10 inset-0 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <div
+            class="fixed inset-0 bg-black bg-opacity-75 transition-opacity sm:max-w-none"
+            aria-hidden="true"
+          ></div>
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+          <div
+            class="inline-block bg-white rounded-xl overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full mb-[50%]"
+          >
+            <div class="relative">
+              <img
+                width="398"
+                src="assets/img/login.png"
+                alt="以Facebook帳號繼續"
+              />
+              <div
+                @click="login = !login"
+                class="absolute top-[15px] right-3 w-10 h-10 cursor-pointer bg-inherit rounded-full"
+              ></div>
+              <a
+                class="absolute bottom-[83px] left-7 h-[54px] sm:h-12 w-[292px] sm:w-[284px] rounded-full"
+                href="https://event.ttshow.tw/sso/facebook"
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 投票成功 -->
+    <section>
+      <div
+        v-if="voteSuccess"
+        class="fixed z-10 inset-0 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <div
+            class="fixed inset-0 bg-black bg-opacity-75 transition-opacity sm:max-w-none"
+            aria-hidden="true"
+          ></div>
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+          <div
+            class="inline-block bg-white rounded-xl overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full mb-[50%]"
+          >
+            <div class="relative">
+              <img
+                width="398"
+                src="assets/img/voteSuccess.png"
+                alt="恭喜投票成功！"
+              />
+              <div
+                @click="voteSuccess = !voteSuccess"
+                class="absolute top-[15px] right-3 w-10 h-10 cursor-pointer bg-inherit rounded-full"
+              ></div>
+              <a
+                @click="voteSuccess = !voteSuccess"
+                class="absolute bottom-[98px] left-7 h-[54px] sm:h-12 w-[292px] sm:w-[280px] rounded-full border"
+                href="/list.html"
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 只可投一次 -->
+    <section>
+      <div
+        v-if="voteFail"
+        class="fixed z-10 inset-0 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <div
+            class="fixed inset-0 bg-black bg-opacity-75 transition-opacity sm:max-w-none"
+            aria-hidden="true"
+          ></div>
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+          <div
+            class="inline-block bg-white rounded-xl overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full mb-[50%]"
+          >
+            <div class="relative">
+              <img
+                width="398"
+                src="assets/img/voteFail.png"
+                alt="每部作品每日僅可投1票已達今日上限！"
+              />
+              <div
+                @click="voteFail = !voteFail"
+                class="absolute top-[15px] right-3 w-10 h-10 cursor-pointer bg-inherit rounded-full"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 已達上限 -->
+    <section>
+      <div
+        v-if="voteLimit"
+        class="fixed z-10 inset-0 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <div
+            class="fixed inset-0 bg-black bg-opacity-75 transition-opacity sm:max-w-none"
+            aria-hidden="true"
+          ></div>
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+          <div
+            class="inline-block bg-white rounded-xl overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full mb-[50%]"
+          >
+            <div class="relative">
+              <img
+                width="398"
+                src="assets/img/voteLimit.png"
+                alt="已達今日投票上限"
+              />
+              <div
+                @click="voteLimit = !voteLimit"
+                class="absolute top-[15px] right-3 w-10 h-10 cursor-pointer bg-inherit rounded-full"
+              ></div>
+            </div>
           </div>
         </div>
       </div>
