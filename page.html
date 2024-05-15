@@ -20,26 +20,26 @@
         },
       };
     </script>
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body
     id="app"
-    class="bg-[url('/assets/img/background_lg.png')] bg-cover bg-no-repeat bg-center bg-fixed"
+    class="bg-[url('assets/img/background_lg.png')] bg-cover bg-no-repeat bg-center bg-fixed"
   >
     <main
       v-show="!menuFlag && !specificationFlag"
-      class="w-full md:w-[480px] mx-auto bg-[url('/assets/img/background.png')] bg-repeat bg-[length:80px_80px] flex flex-col gap-12"
+      class="w-full md:w-[480px] mx-auto bg-[url('assets/img/background.png')] bg-repeat bg-[length:80px_80px] flex flex-col gap-12"
     >
       <!-- 作品列表 -->
       <section class="pt-10 relative flex justify-center">
         <img
           class="absolute w-[210px]"
-          src="/assets/img/pro.png"
+          src="assets/img/pro.png"
           alt="作品列表"
         />
       </section>
       <div id="Page">
-        <img src="/assets//img/page_bg.png" alt="" />
+        <img src="assets//img/page_bg.png" alt="" />
         <div class="video_page">
           <!-- ig -->
 
@@ -94,14 +94,14 @@
           </div>
           <img
             class="max-w-[160px] w-[25vw] mt-3 mx-auto"
-            src="/assets/img/vote_button.png"
+            src="assets/img/vote_button.png"
             alt="投給他一票"
           />
         </div>
       </div>
       <footer>
         <img
-          src="/assets/img/footer.png"
+          src="assets/img/footer.png"
           alt="客服信箱:CrispyChing2024@supermedia.cool"
         />
       </footer>
@@ -109,9 +109,9 @@
     <!-- 選單 -->
     <section v-show="menuFlag" class="w-full md:w-[480px] mx-auto">
       <div
-        class="relative bg-[url('/assets/img/menu_background2.jpg')] bg-[length:480px_841.3px] bg-repeat-y h-screen bg-[center_top_193.5px]"
+        class="relative bg-[url('assets/img/menu_background2.jpg')] bg-[length:480px_841.3px] bg-repeat-y h-screen bg-[center_top_193.5px]"
       >
-        <img src="/assets/img/menu_background.png" alt="選單背景" />
+        <img src="assets/img/menu_background.png" alt="選單背景" />
         <div class="flex justify-center items-center">
           <div
             class="absolute top-[2%] right-[3%] bg-red-200 w-[9%] h-[4%] sm:h-[6%] md:h-[4%] rounded-full cursor-pointer"
@@ -121,7 +121,7 @@
           <div
             class="absolute top-[45vw] md:top-56 md:max-w-[300px] max-w-[480px] w-[62vw]"
           >
-            <img src="/assets/img/menu.png" alt="" />
+            <img src="assets/img/menu.png" alt="" />
 
             <a
               v-for="i in Array.from(Array(8).keys())"
@@ -135,6 +135,6 @@
       </div>
     </section>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./assets/js/index.js"></script>
+    <script src="assets/js/index.js"></script>
   </body>
 </html>
