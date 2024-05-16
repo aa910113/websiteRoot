@@ -8,11 +8,18 @@ createApp({
       const queryString = window.location.search;
       if (queryString) {
         token = queryString.split('token=')[1];
-        if (token) {
+        id = queryString.split('id=')[1];
+        if (id) {
+          if (token) {
+            window.location.href = `${window.location.origin}?id=${id}`;
+          }
+          getPost(id);
+        } else if (token) {
           document.cookie = `ching_token=${token}`;
           loginSuccess.value = true;
-          window.location.href = window.location.origin;
+          window.location.href = window.location.origin
         }
+        
       }
     });
 
@@ -275,13 +282,6 @@ createApp({
       }
     }
 
-    onMounted(() => {
-      const queryString = window.location.search;
-      if (queryString) {
-        id = queryString.split('id=')[1];
-        getPost(id);
-      }
-    });
     const post = ref({
       id: null,
       submission_name: '',
