@@ -1,4 +1,4 @@
-const { createApp, ref, onMounted } = Vue;
+const { createApp, ref, onMounted, computed } = Vue;
 createApp({
   setup() {
     let token = '';
@@ -57,7 +57,7 @@ createApp({
       copiedSuccessfully.value = true;
     };
 
-    const domain = 'https://test-event.ttshow.tw';
+    const domain = ref('https://test-event.ttshow.tw');
 
     onMounted(() => {
       getPosts();
@@ -88,7 +88,7 @@ createApp({
 
     const postList = ref([]);
     async function getPosts() {
-      const response = await fetch(`${domain}/api/crispyching2024/post`);
+      const response = await fetch(`${domain.value}/api/crispyching2024/post`);
       const data = await response.json();
 
       for (let submission of data.data) {
@@ -179,7 +179,7 @@ createApp({
       submitForm();
     }
     async function submitForm() {
-      const response = await fetch(`${domain}/api/crispyching2024/post`, {
+      const response = await fetch(`${domain.value}/api/crispyching2024/post`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -213,7 +213,7 @@ createApp({
     });
 
     async function getVotePeriod() {
-      const response = await fetch(`${domain}/api/crispyching2024/info`);
+      const response = await fetch(`${domain.value}/api/crispyching2024/info`);
       const data = await response.json();
       voteStart = new Date(data.data.start_time);
       voteEnd = new Date(data.data.end_time);
@@ -248,7 +248,7 @@ createApp({
     const voteFail = ref(false);
     const voteLimit = ref(false);
     async function vote(token, id) {
-      const response = await fetch(`${domain}/api/crispyching2024/vote`, {
+      const response = await fetch(`${domain.value}/api/crispyching2024/vote`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -288,7 +288,7 @@ createApp({
       ranking: null,
     });
     async function getPost(id) {
-      const response = await fetch(`${domain}/api/crispyching2024/post/${id}`);
+      const response = await fetch(`${domain.value}/api/crispyching2024/post/${id}`);
       const data = await response.json();
       data.data.platform = getPlatform(data.data.video_url);
       data.data.transformed_video_url = transformVideoURL(
@@ -325,6 +325,7 @@ createApp({
       voteFail,
       voteLimit,
       post,
+      domain,
     };
   },
   delimiters: ['@{{', '}}'],
