@@ -269,7 +269,7 @@
                         <iframe
                           width="270"
                           height="610"
-                          src="https://www.instagram.com/reel/C4KtXsnyn83/embed"
+                          :src="`${post.transformed_video_url}/embed`"
                           frameborder="0"
                         ></iframe>
                       </div>
@@ -280,7 +280,7 @@
                     v-else-if="post.platform === 'facebook'"
                   >
                     <iframe
-                      src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F308745742245646&width=184&show_text=false&appId=677088294591742&height=322"
+                      :src="`https://www.facebook.com/plugins/post.php?href=${post.transformed_video_url}&width=184&show_text=false&appId=677088294591742&height=322`"
                       width="184"
                       height="322"
                       style="border: none; overflow: hidden"
@@ -294,7 +294,7 @@
                     <iframe
                       width="184"
                       height="322"
-                      src="https://www.youtube.com/embed/QPOLrbKI5oQ"
+                      :src="post.transformed_video_url"
                       title="YouTube video player"
                       frameborder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media;gyroscope; picture-in-picture;web-share"
