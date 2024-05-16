@@ -8,8 +8,11 @@ createApp({
       const queryString = window.location.search;
       if (queryString) {
         token = queryString.split('token=')[1];
-        document.cookie = `ching_token=${token}`;
-        loginSuccess.value = true;
+        if (token) {
+          document.cookie = `ching_token=${token}`;
+          loginSuccess.value = true;
+          window.location.href = window.location.origin;
+        }
       }
     });
 
@@ -258,7 +261,7 @@ createApp({
       const data = await response.json();
       if (data.status === 200) {
         voteSuccess.value = true;
-      } else if (data.status === 401) {
+      } else if (data.status === 401 || data.status === 400) {
         document.cookie =
           'ching_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         token = '';

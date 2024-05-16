@@ -135,6 +135,7 @@
       <div
         v-if="isVoteTime"
         class="fixed z-10 inset-0 overflow-y-auto"
+        :class="{'opacity-0': !isVoteTime}"
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"
@@ -174,6 +175,7 @@
       <div
         v-if="loginSuccess"
         class="fixed z-10 inset-0 overflow-y-auto"
+        :class="{'opacity-0': !loginSuccess}"
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"
@@ -213,6 +215,7 @@
       <div
         v-if="login"
         class="fixed z-10 inset-0 overflow-y-auto"
+        :class="{'opacity-0': !login}"
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"
@@ -256,6 +259,7 @@
       <div
         v-if="voteSuccess"
         class="fixed z-10 inset-0 overflow-y-auto"
+        :class="{'opacity-0': !voteSuccess}"
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"
@@ -300,6 +304,7 @@
       <div
         v-if="voteFail"
         class="fixed z-10 inset-0 overflow-y-auto"
+        :class="{'opacity-0': !voteFail}"
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"
@@ -339,6 +344,7 @@
       <div
         v-if="voteLimit"
         class="fixed z-10 inset-0 overflow-y-auto"
+        :class="{'opacity-0': !voteLimit}"
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true"
